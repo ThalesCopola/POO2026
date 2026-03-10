@@ -6,15 +6,36 @@ namespace academico.Controllers
     public class AlunoController : Controller
     {
         private static List<Aluno> alunos = new List<Aluno>();
-        private static List<Aluno> alunos2 = new List<Aluno>();
-        private static List<Aluno> alunos3 = new List<Aluno>();
+
+
         public IActionResult Create()
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Aluno aluno)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    alunos.Add(aluno);
+                    return RedirectToAction(nameof(Index));
+                }
+            }catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, $"Ocorreu um erro ao criar o aluno: {ex.Message}");
+            }
+            return View(aluno);
+        }
+
+
         public IActionResult Index()
         {
-            return View();
+            return View(alunos);
         }
+
     }
 }
