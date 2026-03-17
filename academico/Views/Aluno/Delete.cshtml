@@ -1,13 +1,11 @@
 ﻿@model academico.Models.Aluno
 
 @{
-    ViewData["Title"] = "Exclusão do aluno";
 }
 
-<h1>@ViewData["Title"]</h1>
 
-<h3>Confirma exclusão deste aluno?</h3>
 <div>
+    <h4>Aluno</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -73,7 +71,5 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
     </form>
 </div>
